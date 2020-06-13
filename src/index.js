@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore} from "redux";
+import { createStore, compose, applyMiddleware } from "redux";
+import thunk from 'redux-thunk';
 
 import App from './components/App';
 import reducers from './reducers';
 
+// `compose` since only 2 params allowed in createStore\
+//  this is for Redux DevTools
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(reducers, composeEnhancer(applyMiddleware(thunk)));
+
 ReactDOM.render(
-    <Provider store={createStore(reducers)}>
+    <Provider store={store}>
         <App />
     </Provider>,
     document.querySelector('#root')

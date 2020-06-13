@@ -1,5 +1,8 @@
 import { combineReducers } from "redux";
+import postsReducer from "./postsReducer";
+import usersReducer from "./usersReducer";
 
 export default combineReducers({
-    replaceMe: () => 'placeholder to stop error message'
+    posts: postsReducer,
+    users: usersReducer
 });
